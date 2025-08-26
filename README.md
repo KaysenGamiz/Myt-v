@@ -1,6 +1,6 @@
-# 🎬 MiTV — Local Streaming Server
+# 🎬 Myt-V — Local Streaming Server
 
-MiTV is a lightweight Netflix-style media server written in Go.  
+Myt-V is a lightweight Netflix-style media server written in Go.  
 It scans your local movie library, generates a catalog, and serves videos via **HLS (m3u8 + ts)** with a simple web UI.
 
 ---
@@ -62,8 +62,8 @@ It scans your local movie library, generates a catalog, and serves videos via **
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/mitv.git
-   cd mitv
+   git clone https://github.com/your-username/Myt-v.git
+   cd Myt-v
    ```
 
 2. Install Go dependencies:
@@ -108,6 +108,6 @@ main.go       -> App entrypoint
 ---
 
 ## ⚡ Notes
-- For **best performance**, normalize your media to `h264 + aac` so MiTV can use `-c copy` instead of transcoding.
-- MiTV is designed to run behind a **VPN**; do not expose it directly to the internet.
+- For **best performance**, normalize your media to `h264 + aac` so Myt-V can use `-c copy` instead of transcoding.
+- Myt-V is designed to run behind a **VPN**; do not expose it directly to the internet.
 - If you want GPU-accelerated transcoding, ensure your FFmpeg build supports NVENC/VAAPI/QuickSync.

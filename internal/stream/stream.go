@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"time"
 
-	"mitv/internal/db"
+	"myt-v/internal/db"
 )
 
 type HLSConfig struct {

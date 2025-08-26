@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"mitv/internal/db"
+	"myt-v/internal/db"
 )
 
 type FFProbeFormat struct {

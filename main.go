@@ -6,9 +6,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"mitv/internal/db"
-	"mitv/internal/scanner"
-	"mitv/internal/stream"
+	"myt-v/internal/db"
+	"myt-v/internal/scanner"
+	"myt-v/internal/stream"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"

@@ -1,4 +1,4 @@
-module mitv
+module myt-v
 
 go 1.22
 
