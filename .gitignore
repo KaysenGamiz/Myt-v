@@ -1,0 +1,4 @@
+catalog.db
+.env
+hls/*
+!hls/.gitkeep
