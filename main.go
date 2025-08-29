@@ -4,6 +4,8 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"path/filepath"
+	"strings"
 	"syscall"
 
 	"myt-v/internal/db"
@@ -40,7 +42,7 @@ func ensureDir(path string) {
 
 func main() {
 	cfg := AppConfig{
-		Bind:    getEnv("BIND", "127.0.0.1:8080"), // local; ideally behind VPN
+		Bind:    getEnv("BIND", "0.0.0.0:8080"), // local; ideally behind VPN
 		Media:   getEnv("MEDIA_DIR", "D:\\Peliculas"),
 		HLSDir:  getEnv("HLS_DIR", "./hls"),
 		EnvName: getEnv("APP_ENV", "dev"),
@@ -68,6 +70,29 @@ func main() {
 	// Healthcheck
 	app.Get("/health", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{"status": "ok"})
+	})
+
+	// Poster endpoint: serves /poster/:id -> <movie_dir>/image.webp
+	app.Get("/poster/:id", func(c *fiber.Ctx) error {
+		var m db.Movie
+		if err := db.DB.First(&m, "id = ?", c.Params("id")).Error; err != nil {
+			return c.Status(404).SendString("not found")
+		}
+
+		// Build expected poster path
+		movieDir := filepath.Dir(m.Path)
+		poster := filepath.Join(movieDir, "image.webp")
+
+		// Optional safety: ensure the movie is actually inside MEDIA_DIR
+		if !strings.HasPrefix(strings.ToLower(movieDir), strings.ToLower(filepath.Clean(cfg.Media))) {
+			return c.Status(403).SendString("forbidden")
+		}
+
+		// Serve if exists
+		if _, err := os.Stat(poster); err == nil {
+			return c.SendFile(poster)
+		}
+		return c.Status(404).SendString("poster not found")
 	})
 
 	// Config
