@@ -123,11 +123,12 @@ func main() {
 	app.Get("/watch/:id", func(c *fiber.Ctx) error {
 		id := c.Params("id")
 		log.Printf("Opening watch view for id=%s", id)
-		return c.SendFile("./public/watch.html")
+		return c.SendFile("./views/watch.html")
 	})
 
 	// Estáticos: UI + HLS
 	app.Static("/", "./public")
+	app.Static("/", "./views")
 	app.Static("/hls", cfg.HLSDir)
 
 	// Arranque y apagado limpio

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Myt-V — Catálogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/home_page/style.css"/>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="#" class="logo">Myt-V</a>
+      <div class="search-container">
+        <div class="search-icon">🔍</div>
+        <input id="searchInput" class="search-input" placeholder="Buscar..." autocomplete="off"/>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div id="stats" class="stats"></div>
+    <div id="movieGrid" class="movie-grid"></div>
+    
+    <div class="pagination">
+      <button id="prevButton" class="pagination-button">← Anterior</button>
+      <div id="pageInfo" class="page-info"></div>
+      <button id="nextButton" class="pagination-button">Siguiente →</button>
+    </div>
+  </main>
+
+  <script src="scripts/home_page/main.js"></script>
+</body>
+</html>
